@@ -232,7 +232,7 @@ class OptimizerGooglenetV3(Optimizer):
 class OptimizerResNext(Optimizer):
 
     def __init__(self, model=None, lr=0.1, momentum=0.9, weight_decay=5.0e-4, schedule=(150, 225)):
-        super(OptimizerSwapout, self).__init__(model)
+        super(OptimizerResNext, self).__init__(model)
         optimizer = optimizers.MomentumSGD(lr, momentum)
         weight_decay = chainer.optimizer.WeightDecay(weight_decay)
         optimizer.setup(self.model)
