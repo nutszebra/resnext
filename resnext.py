@@ -145,7 +145,7 @@ class ResNext(nutszebra_chainer.Model):
                 h = self['resnext_block_{}_{}'.format(i + 1, ii + 1)](h, train)
         batch, channels, height, width = h.data.shape
         h = F.reshape(F.average_pooling_2d(h, (height, width)), (batch, channels, 1, 1))
-        return self.linear(h, train)
+        return F.reshape(self.linear(h, train), (batch, self.category_num))
 
     def calc_loss(self, y, t):
         loss = F.softmax_cross_entropy(y, t)
