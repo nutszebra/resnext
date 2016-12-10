@@ -43,15 +43,23 @@ if __name__ == '__main__':
                         default=0.1,
                         help='leraning rate')
     parser.add_argument('--C', '-C', type=int,
-                        default=32,
+                        default=2,
                         help='cardinality')
+    parser.add_argument('--d', '-d', type=int,
+                        default=64,
+                        help='dimension')
+    parser.add_argument('--m', '-multi', type=int,
+                        default=4,
+                        help='dimension')
 
     args = parser.parse_args().__dict__
     lr = args.pop('lr')
     C = args.pop('C')
+    d = args.pop('d')
+    multi = args.pop('multi')
 
     print('generating model')
-    model = resnext.ResNext(10, C=C)
+    model = resnext.ResNext(10, C=C, d=d, multiplier=multi)
     print('Done')
     optimizer = nutszebra_optimizer.OptimizerResNext(model, lr=lr)
     args['model'] = model
