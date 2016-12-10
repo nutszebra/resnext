@@ -21,8 +21,9 @@ Test: Pictures are resized to 32x32, then they are normalized locally. Single im
 | network               | model detail | total accuracy (%)                          |
 |:----------------------|--------------|--------------------------------------------:|
 | ResNext [[1]][Paper]  | 16x64d       |96.42                                        |
-| ResNext [[1]][Paper]  | 4x64d        |96.225 (by my eyes on Figure 7)              |
-| my implementation     | 4x64d        |soon                                         |
+| ResNext [[1]][Paper]  | 8x64d        |96.35                                        |
+| ResNext [[1]][Paper]  | 2x64d        |95.98 (by my eyes on Figure 7)              |
+| my implementation     | 2x64d        |soon                                         |
 
 <img src="https://github.com/nutszebra/resnext/blob/master/loss.jpg" alt="loss" title="loss">
 <img src="https://github.com/nutszebra/resnext/blob/master/accuracy.jpg" alt="total accuracy" title="total accuracy">
