@@ -48,7 +48,7 @@ if __name__ == '__main__':
     parser.add_argument('--d', '-d', type=int,
                         default=64,
                         help='dimension')
-    parser.add_argument('--m', '-multi', type=int,
+    parser.add_argument('--multi', '-multi', type=int,
                         default=4,
                         help='dimension')
 
