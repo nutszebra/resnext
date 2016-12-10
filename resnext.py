@@ -96,11 +96,11 @@ class ResNextBlock(nutszebra_chainer.Model):
 
 class ResNext(nutszebra_chainer.Model):
 
-    def __init__(self, category_num, C=32):
+    def __init__(self, category_num, C=4, d=64, multiplier=4):
         super(ResNext, self).__init__()
         # conv
         modules = [('conv_bn_relu', Conv_BN_ReLU(3, 64, 3, 1, 1))]
-        out_channels = [(256 * i, 256 * i, 512 * i) for i in (1, 2, 4)]
+        out_channels = [(C * d * i, C * d * i, C * d * multiplier * i) for i in (1, 2, 4)]
         block_num = (3, 3, 3)
         in_channel = 64
         for i, n in enumerate(block_num):
