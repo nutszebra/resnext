@@ -36,8 +36,8 @@ class ResNextBlock(nutszebra_chainer.Model):
         modules = []
         for i, out_channel in enumerate(out_channels[:-1]):
             for ii in six.moves.range(1, C + 1):
-                modules += [('conv_bn_relu{}_{}'.format(i + 1, ii), Conv_BN_ReLU(in_channel, out_channels[i] / C, filters[i], strides[i], pads[i]))]
-            in_channel = out_channels[i] / C
+                modules += [('conv_bn_relu{}_{}'.format(i + 1, ii), Conv_BN_ReLU(in_channel, int(out_channels[i] / C), filters[i], strides[i], pads[i]))]
+            in_channel = int(out_channels[i] / C)
         modules += [('conv_bn_relu{}'.format(len(out_channels)), Conv_BN_ReLU(out_channels[-2], out_channels[-1], filters[-1], strides[-1], pads[-1]))]
         # register layers
         [self.add_link(*link) for link in modules]
@@ -96,13 +96,12 @@ class ResNextBlock(nutszebra_chainer.Model):
 
 class ResNext(nutszebra_chainer.Model):
 
-    def __init__(self, category_num, C=4, d=64, multiplier=4):
+    def __init__(self, category_num, block_num=(3, 3, 3), C=4, d=64, multiplier=4):
         super(ResNext, self).__init__()
         # conv
-        modules = [('conv_bn_relu', Conv_BN_ReLU(3, 64, 3, 1, 1))]
-        out_channels = [(C * d * i, C * d * i, C * d * multiplier * i) for i in (1, 2, 4)]
-        block_num = (3, 3, 3)
-        in_channel = 64
+        modules = [('conv_bn_relu', Conv_BN_ReLU(3, C * d, 3, 1, 1))]
+        out_channels = [(C * d * i, C * d * i, C * d * multiplier * i) for i in [2 ** x for x in six.moves.range(len(block_num))]]
+        in_channel = C * d
         for i, n in enumerate(block_num):
             for ii in six.moves.range(n):
                 if i >= 1 and ii == 0:
