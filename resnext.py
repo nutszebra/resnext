@@ -99,9 +99,9 @@ class ResNext(nutszebra_chainer.Model):
     def __init__(self, category_num, block_num=(3, 3, 3), C=4, d=64, multiplier=4):
         super(ResNext, self).__init__()
         # conv
-        modules = [('conv_bn_relu', Conv_BN_ReLU(3, C * d, 3, 1, 1))]
-        out_channels = [(C * d * i, C * d * i, C * d * multiplier * i) for i in [2 ** x for x in six.moves.range(len(block_num))]]
-        in_channel = C * d
+        modules = [('conv_bn_relu', Conv_BN_ReLU(3, d * multiplier, 3, 1, 1))]
+        out_channels = [(C * d * i, C * d * i, d * i * multiplier) for i in [2 ** x for x in six.moves.range(len(block_num))]]
+        in_channel = d * multiplier
         for i, n in enumerate(block_num):
             for ii in six.moves.range(n):
                 if i >= 1 and ii == 0:
