@@ -50,7 +50,7 @@ if __name__ == '__main__':
                         help='dimension')
     parser.add_argument('--multi', '-multi', type=int,
                         default=4,
-                        help='dimension')
+                        help='multiplier of resblock')
 
     args = parser.parse_args().__dict__
     lr = args.pop('lr')
