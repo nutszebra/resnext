@@ -28,17 +28,38 @@ Test: Pictures are resized to 32x32, then they are normalized locally. Single im
 <img src="https://github.com/nutszebra/resnext/blob/master/loss.jpg" alt="loss" title="loss">
 <img src="https://github.com/nutszebra/resnext/blob/master/accuracy.jpg" alt="total accuracy" title="total accuracy">
 
+
+# Converted ILSVRC pretrained model
+| C  | d | total layers | url | original model: ILSVRC top-1 error (%)| converted model: ILSVRC top-1 error (%)| converted model: ILSCRC top-5 error (%)|
+|:---|---|--------------|-----|---------------------------------------|----------------------------------------|-----------------------------------------:|
+| 64 | 4 | 101 | https://1drv.ms/u/s!AtHe5bQGa25xiIswQGB9cdcHWDUhNA  | 20.4 | soon | soon |
+| 32 | 4 | 101 | https://1drv.ms/u/s!AtHe5bQGa25xiIsyHnhhdNNcugAqLA  | 21.2 | soon | soon |
+| 32 | 4 | 50  | https://1drv.ms/u/s!AtHe5bQGa25xiIsxun5XuoIpd_bFjg  | 22.2 | soon | soon |
+
+
+# How to convert ILSVRC pretrained model by yourself
+To run ilsvrc_converter.py, you need to install [pytorch](http://pytorch.org/) and download t7 file from [here](https://github.com/facebookresearch/ResNeXt), then type like this on terminal:
+
+    ipython
+    run ilsvrc_converter.py -t /path/to/t7/file
+    model.save_model('path/to/save/model')
+
+Note: Please do not rename t7 file
+
+# How to test converted ILSVRC pretrained model
+
+    run test_ilsvrc.py -g 0 -b 16 -c 32 -d 4 -l 50 -m /path/to/converted/chainer/model -ld ./ILSVRC
+
+g: gpu number  
+b: batch number  
+c: cardinality  
+d: d of Cxd  
+l: total layers  
+m: converted model  
+ld: path to root directory of ilsvrc  
+
 # References
 Aggregated Residual Transformations for Deep Neural Networks [[1]][Paper]
-
-# ILSCRC Pretrained model
-| C  | d | total layers | url                                                 | ILSVRC Top-1 error | ILSCRC Top-5 Error |
-|:---|---|--------------|-----------------------------------------------------|--------------------|-------------------:| 
-| 64 | 4 |    101       | https://1drv.ms/u/s!AtHe5bQGa25xiIswQGB9cdcHWDUhNA  | soon               | soon               |
-| 32 | 4 |    101       | https://1drv.ms/u/s!AtHe5bQGa25xiIsyHnhhdNNcugAqLA  | soon               | soon               |
-| 32 | 4 |    50        | https://1drv.ms/u/s!AtHe5bQGa25xiIsxun5XuoIpd_bFjg  | soon               | soon               |
-
-Original pretrained model is here: https://github.com/facebookresearch/ResNeXt  
 
 
 
