@@ -31,4 +31,15 @@ Test: Pictures are resized to 32x32, then they are normalized locally. Single im
 # References
 Aggregated Residual Transformations for Deep Neural Networks [[1]][Paper]
 
+# ILSCRC Pretrained model
+| C  | d | total layers | url                                                 | ILSVRC Top-1 error | ILSCRC Top-5 Error |
+|:---|---|--------------|-----------------------------------------------------|--------------------|-------------------:| 
+| 64 | 4 |    101       | https://1drv.ms/u/s!AtHe5bQGa25xiIswQGB9cdcHWDUhNA  | soon               | soon               |
+| 32 | 4 |    101       | https://1drv.ms/u/s!AtHe5bQGa25xiIsyHnhhdNNcugAqLA  | soon               | soon               |
+| 32 | 4 |    50        | https://1drv.ms/u/s!AtHe5bQGa25xiIsxun5XuoIpd_bFjg  | soon               | soon               |
+
+Original pretrained model is here: https://github.com/facebookresearch/ResNeXt  
+
+
+
 [paper]: https://arxiv.org/abs/1611.05431 "Paper"
