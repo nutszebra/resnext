@@ -177,9 +177,11 @@ if __name__ == '__main__':
                 parameters.append(extract(c))
                 break
     if '101_64x4d' in t7:
+        print('101_64x4d')
         model = resnext_ilsvrc.ResNext(1000, block_num=(3, 4, 23, 3), C=64, d=4)
         count = 0
         copy_conv_bn_relu(model.conv_bn_relu, parameters[count: count + 2])
+        print('conv1')
         count += 2
         for i, b in enumerate([3, 4, 23, 3]):
             print('converting block {}'.format(i))
@@ -194,4 +196,47 @@ if __name__ == '__main__':
                     count += 6
         print('linear')
         copy_linear(model.linear.linear, parameters[count])
+        count += 1
+    if '101_32x4d' in t7:
+        print('101_32x4d')
+        model = resnext_ilsvrc.ResNext(1000, block_num=(3, 4, 23, 3), C=32, d=4, multiplier=2)
+        count = 0
+        copy_conv_bn_relu(model.conv_bn_relu, parameters[count: count + 2])
+        print('conv1')
+        count += 2
+        for i, b in enumerate([3, 4, 23, 3]):
+            print('converting block {}'.format(i))
+            for ii in six.moves.range(b):
+                name = 'resnext_block_{}_{}'.format(i, ii)
+                print('    converting {}'.format(name))
+                if ii == 0:
+                    copy_resnext_block(model[name], parameters[count: count + 8], skip_connection=model['skip_connection_{}'.format(i)])
+                    count += 8
+                else:
+                    copy_resnext_block(model[name], parameters[count: count + 6])
+                    count += 6
+        print('linear')
+        copy_linear(model.linear.linear, parameters[count])
+        count += 1
+    if '50_32x4d' in t7:
+        print('101_32x4d')
+        model = resnext_ilsvrc.ResNext(1000, block_num=(3, 4, 6, 3), C=32, d=4, multiplier=2)
+        count = 0
+        copy_conv_bn_relu(model.conv_bn_relu, parameters[count: count + 2])
+        print('conv1')
+        count += 2
+        for i, b in enumerate([3, 4, 6, 3]):
+            print('converting block {}'.format(i))
+            for ii in six.moves.range(b):
+                name = 'resnext_block_{}_{}'.format(i, ii)
+                print('    converting {}'.format(name))
+                if ii == 0:
+                    copy_resnext_block(model[name], parameters[count: count + 8], skip_connection=model['skip_connection_{}'.format(i)])
+                    count += 8
+                else:
+                    copy_resnext_block(model[name], parameters[count: count + 6])
+                    count += 6
+        print('linear')
+        copy_linear(model.linear.linear, parameters[count])
+        count += 1
     print('finished convering')
