@@ -3,7 +3,7 @@ sys.path.append('./trainer')
 import nutszebra_ilsvrc_object_localization
 import resnext_ilsvrc as resnext
 import argparse
-import trainer.nutszebra_data_augmentation as da
+import data_augmentation as da
 
 if __name__ == '__main__':
 
