@@ -78,9 +78,9 @@ class Group_Conv(nutszebra_chainer.Model):
 
 class BN_ReLU(nutszebra_chainer.Model):
 
-    def __init__(self, in_channel):
+    def __init__(self, in_channel, eps=1.0e-5):
         super(BN_ReLU, self).__init__(
-            bn=L.BatchNormalization(in_channel),
+            bn=L.BatchNormalization(in_channel, eps=eps),
         )
         self.in_channel = in_channel
 
@@ -96,10 +96,10 @@ class BN_ReLU(nutszebra_chainer.Model):
 
 class Conv_BN(nutszebra_chainer.Model):
 
-    def __init__(self, in_channel, out_channel, filter_size=(3, 3), stride=(1, 1), pad=(1, 1)):
+    def __init__(self, in_channel, out_channel, filter_size=(3, 3), stride=(1, 1), pad=(1, 1), eps=1.0e-5):
         super(Conv_BN, self).__init__(
             conv=L.Convolution2D(in_channel, out_channel, filter_size, stride, pad),
-            bn=L.BatchNormalization(out_channel),
+            bn=L.BatchNormalization(out_channel, eps=eps),
         )
         self.in_channel = in_channel
         self.out_channel = out_channel
@@ -117,10 +117,10 @@ class Conv_BN(nutszebra_chainer.Model):
 
 class Conv_BN_ReLU(nutszebra_chainer.Model):
 
-    def __init__(self, in_channel, out_channel, filter_size=(3, 3), stride=(1, 1), pad=(1, 1)):
+    def __init__(self, in_channel, out_channel, filter_size=(3, 3), stride=(1, 1), pad=(1, 1), eps=1.0e-5):
         super(Conv_BN_ReLU, self).__init__(
             conv=L.Convolution2D(in_channel, out_channel, filter_size, stride, pad),
-            bn=L.BatchNormalization(out_channel),
+            bn=L.BatchNormalization(out_channel, eps=eps),
         )
         self.in_channel = in_channel
         self.out_channel = out_channel
