@@ -22,11 +22,11 @@ class DataAugmentationNormalizeBigger(object):
     @staticmethod
     @reset
     def train(img):
-        da.load_picture(img).resize_image_randomly(1.0, size_range=(256, 512)).crop_picture_randomly(1.0, sizes=(224, 224)).normalize_picture(1.0, value=10., each_rgb=True).horizontal_flipping(0.5).convert_to_chainer_format(1.0)
+        da.load_picture(img).resize_image_randomly(1.0, size_range=(224, 288)).crop_picture_randomly(1.0, sizes=(224, 224)).scale_to_one(1.0, constant=255.).fixed_normalization(1.0, each_rgb=True).horizontal_flipping(0.5).convert_to_chainer_format(1.0)
         return da.x, da.info
 
     @staticmethod
     @reset
     def test(img):
-        da.load_picture(img).resize_image_randomly(1.0, size_range=(384, 384), interpolation='bilinear').normalize_picture(1.0, value=10., each_rgb=True).convert_to_chainer_format(1.0)
+        da.load_picture(img).resize_image_randomly(1.0, size_range=(256, 256), interpolation='bicubic').crop_center(sizes=(224, 224)).scale_to_one(1.0, constant=255.).fixed_normalization(1.0, each_rgb=True).convert_to_chainer_format(1.0)
         return da.x, da.info
