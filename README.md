@@ -58,7 +58,7 @@ c: cardinality
 d: d of Cxd  
 l: total layers  
 m: converted model  
-ld: path to root directory of ilsvrc  
+ld: path to the root directory of Imagenet Objec Localization 2012  
 
 # How to run converted ILSVRC pretrained model
 
