@@ -61,6 +61,7 @@ if __name__ == '__main__':
     print('generating model')
     model = resnext.ResNext(10, C=C, d=d, multiplier=multi)
     print('Done')
+    print('Parameters: {}'.format(model.count_parameters()))
     optimizer = nutszebra_optimizer.OptimizerResNext(model, lr=lr)
     args['model'] = model
     args['optimizer'] = optimizer
