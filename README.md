@@ -78,7 +78,7 @@ ld: path to root directory of ilsvrc
         model = resnext.ResNext(1000, C=C, d=d)
     
     model.load_model('path/to/converted/chainer/model')
-    model.check_gpu(-1) # if you'd like to use gpu, give gpu id here
+    model.check_gpu(-1) # -1 means cpu. If you'd like to use gpu, give gpu id here
     
     preprocess = data_augmentation.DataAugmentationNormalizeBigger
     
