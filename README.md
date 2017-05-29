@@ -1,5 +1,5 @@
 # What's this
-Implementation of ResNext by chainer  
+Implementation of ResNext [[1]][Paper] by chainer  
 
 # Dependencies
 
@@ -30,11 +30,13 @@ Test: Pictures are resized to 32x32, then they are normalized locally. Single im
 
 
 # Converted ILSVRC pretrained model
-| C  | d | total layers | url | original model: ILSVRC top-1 error (%)| converted model: ILSVRC top-1 error (%)| converted model: ILSCRC top-5 error (%)|
-|:---|---|--------------|-----|---------------------------------------|----------------------------------------|-----------------------------------------:|
-| 64 | 4 | 101 | https://1drv.ms/u/s!AtHe5bQGa25xiIswQGB9cdcHWDUhNA  | 20.4 | 21.4 | 5.86 |
-| 32 | 4 | 101 | https://1drv.ms/u/s!AtHe5bQGa25xiIsyHnhhdNNcugAqLA  | 21.2 | 22.3 | 6.24 |
-| 32 | 4 | 50  | https://1drv.ms/u/s!AtHe5bQGa25xiIsxun5XuoIpd_bFjg  | 22.2 | 23.4 | 6.96 |
+| C  | d | total layers | url | original model: ILSVRC top-1 error (%)| original model: ILSVRC top-5 error (%) | converted model: ILSVRC top-1 error (%)| converted model: ILSCRC top-5 error (%)|
+|:---|---|--------------|-----|---------------------------------------|----------------------------------------|------------------------------------------|-----------------------------------------:|
+| 64 | 4 | 101 | https://1drv.ms/u/s!AtHe5bQGa25xiIswQGB9cdcHWDUhNA  | 20.4 | 5.3 |21.4 | 5.86 |
+| 32 | 4 | 101 | https://1drv.ms/u/s!AtHe5bQGa25xiIsyHnhhdNNcugAqLA  | 21.2 | 5.7 |22.3 | 6.24 |
+| 32 | 4 | 50  | https://1drv.ms/u/s!AtHe5bQGa25xiIsxun5XuoIpd_bFjg  | 22.2 | 6.6 | 23.4 | 6.96 |
+
+Top-1 error of original model is based on [here](https://github.com/facebookresearch/ResNeXt) and top-5 error of original model is based on [[1]][Paper].
 
 
 # How to convert ILSVRC pretrained model by yourself
