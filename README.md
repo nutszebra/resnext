@@ -58,6 +58,32 @@ l: total layers
 m: converted model  
 ld: path to root directory of ilsvrc  
 
+# How to load converted ILSVRC pretrained model
+
+    import resnext_ilsvrc
+    import data_augmentation
+    
+    layers = 101 # this parameter is up to model
+    C = 64 # this parameter is up to model
+    
+    if layers == 101 and C == 64:
+        model = resnext.ResNext(1000, block_num=(3, 4, 23, 3), C=C, d=d, multiplier=1)
+    elif layers == 101 and C == 32:
+        model = resnext.ResNext(1000, block_num=(3, 4, 23, 3), C=C, d=d, multiplier=2)
+    elif layers == 50 and C == 32:
+        model = resnext.ResNext(1000, block_num=(3, 4, 6, 3), C=C, d=d, multiplier=2)
+    else:
+        model = resnext.ResNext(1000, C=C, d=d)
+    
+    model.load_model('path/to/converted/chainer/model')
+    model.check_gpu(-1) # -1 means cpu. If you'd like to use gpu, give gpu id here
+    
+    preprocess = data_augmentation.DataAugmentationNormalizeBigger
+    
+    img = preprocess.test('path/to/image').x
+    x = model.prepare_input([x], volatile=True)
+    y = model(x, train=False)
+ 
 # References
 Aggregated Residual Transformations for Deep Neural Networks [[1]][Paper]
 
