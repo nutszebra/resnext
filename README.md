@@ -60,6 +60,8 @@ ld: path to root directory of ilsvrc
 
 # How to load converted ILSVRC pretrained model
 
+    import sys
+    sys.path.append('./trainer')
     import resnext_ilsvrc
     import data_augmentation
     
